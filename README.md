@@ -2,7 +2,7 @@
 
 #### Clonar este repositório
 
-\$ git clone git@github.com:denisesleite/react-book-store.git
+\$ git clone https://github.com/denisesleite/react-book-store.git
 
 #### Para executar o server(back-end):
 
