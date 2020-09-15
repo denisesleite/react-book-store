@@ -11,12 +11,12 @@ import './styles.css';
 import '../../assets/css/app.css';
 export interface Book{ 
     id: number,
-    nome: string,
-    autor: string,
-    ano: number,
-    genero: string,
-    editora: string,
-    paginas: number,
+    name: string,
+    author: string,
+    year: number,
+    genre: string,
+    publisher: string,
+    page: number,
     status: string
 }
 
@@ -31,7 +31,7 @@ const Livraria = () => {
     const [modalAdicionaLivro, setModalAdicionaLivro] = useState(false);     
 
     useEffect(() => {
-        api.get('/livros').then(response => {
+        api.get('/book').then(response => {
             setBook(response.data);
         });
     }, []);
@@ -39,12 +39,12 @@ const Livraria = () => {
     function handleBook(book: Book){
         const bookSelected = [{
             id: book.id,
-            nome: book.nome,
-            autor: book.autor,
-            ano: book.ano,
-            genero: book.genero,
-            editora: book.editora,
-            paginas: book.paginas,
+            name: book.name,
+            author: book.author,
+            year: book.year,
+            genre: book.genre,
+            publisher: book.publisher,
+            page: book.page,
             status: book.status
         }]
 

@@ -15,9 +15,9 @@ export const BoxLivro:FC<PropsBoxLivro> = ({object, openBox}) => {
         <div className="box-livro" key={book.id} onClick={() => openBox(book)}>
           <div>
               <p>
-                <b>Nome do livro:</b> {book.nome.length > 18 ? book.nome.substr(0, 18) + '...' : book.nome}
+                <b>Nome do livro:</b> {book.name.length > 18 ? book.name.substr(0, 18) + '...' : book.name}
               </p>
-              <p><b>Autor do livro:</b> {book.autor}</p>
+              <p><b>Autor do livro:</b> {book.author}</p>
           </div>
 
           <div className="detalhes">

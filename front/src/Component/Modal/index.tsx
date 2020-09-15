@@ -32,7 +32,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="nome"
                   label="Nome do Livro"
-                  value={bookSelected.nome}
+                  value={bookSelected.name}
                   disabled={disabledButton}
                   type="text"
                   handleChange={handleInputChange}
@@ -40,7 +40,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="autor"
                   label="Autor do livro"
-                  value={bookSelected.autor}
+                  value={bookSelected.author}
                   disabled={disabledButton}
                   type="text"
                   handleChange={handleInputChange}
@@ -48,7 +48,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="ano"
                   label="Ano do livro"
-                  value={bookSelected.ano}
+                  value={bookSelected.year}
                   disabled={disabledButton}
                   type="text"
                   handleChange={handleInputChange}
@@ -56,7 +56,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="genero"
                   label="Gênero do livro"
-                  value={bookSelected.genero}
+                  value={bookSelected.genre}
                   disabled={disabledButton}
                   type="text"
                   handleChange={handleInputChange}
@@ -64,7 +64,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="editora"
                   label="Editora do livro"
-                  value={bookSelected.editora}
+                  value={bookSelected.publisher}
                   disabled={disabledButton}
                   type="text"
                   handleChange={handleInputChange}
@@ -72,7 +72,7 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="paginas"
                   label="Nº de páginas do livro"
-                  value={bookSelected.paginas}
+                  value={bookSelected.page}
                   disabled={disabledButton}
                   type="number"
                   handleChange={handleInputChange}
@@ -80,10 +80,10 @@ export const Modal:FC<PropsModal> = ({object, saveEdition, removeBook, openModal
                 <Input 
                   name="status"
                   label="Status do livro"
-                  value={newValueInput}
-                  defaultValue={bookSelected.status}
+                  value={bookSelected.status}
                   disabled={disabledButton}
                   type="text"
+                  handleChange={handleInputChange}
                 />
               </div>
             </form>
