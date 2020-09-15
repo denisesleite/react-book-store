@@ -20,7 +20,7 @@ Popular o banco de dados executando:<br/>
 Executar projeto:<br/>
 \$ npm run dev
 
-Porta: http://localhost:3333/livros
+Porta: http://localhost:3333/book
 
 #### Para executar o projeto(front-end):
 
