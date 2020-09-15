@@ -8,16 +8,16 @@
 
 Acessar a pasta /back
 
-Instalar suas dependências:
+Instalar suas dependências:<br/>
 \$ npm install
 
-Criar o banco de dados executando:
+Criar o banco de dados executando:<br/>
 \$ npx knex --knexfile knexfile.ts migrate:latest
 
-Popular o banco de dados executando:
+Popular o banco de dados executando:<br/>
 \$ npx knex --knexfile knexfile.ts seed:run
 
-Executar projeto:
+Executar projeto:<br/>
 \$ npm run dev
 
 Porta: http://localhost:3333/livros
@@ -26,8 +26,8 @@ Porta: http://localhost:3333/livros
 
 Acessar a pasta /front
 
-Instalar suas dependências:
+Instalar suas dependências:<br/>
 \$ npm install
 
-Executar projeto:
+Executar projeto:<br/>
 \$ npm start
