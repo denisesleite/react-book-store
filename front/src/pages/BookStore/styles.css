@@ -1,0 +1,43 @@
+header {
+    background: #91765c;
+    padding: 20px;
+}
+
+header h1 {
+    color: #fff;
+    text-align: center;
+}
+
+.lista{
+    width: calc(100% - 30px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 15px;
+}
+
+.lista .box-livro{
+    background: #f1f1f1;
+    border-radius: 5px;
+    padding: 15px 15px 5px;
+    cursor: pointer;
+}
+
+.lista .detalhes{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.lista .detalhes svg{
+    width: 11px;
+    height: 11px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px){
+    .lista{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
