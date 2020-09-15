@@ -1,14 +1,14 @@
 import express from 'express';
 
-import LivrosController from './controllers/LivrosController';
+import BookController from './controllers/BookController';
 
 const routes = express.Router();
 
-const livrosController = new LivrosController();
+const bookController = new BookController();
 
-routes.get('/livros', livrosController.index);
-routes.post('/livros', livrosController.create);
-routes.put('/livros/:id', livrosController.update);
-routes.delete('/livros/:id', livrosController.delete);
+routes.get('/book', bookController.index);
+routes.post('/book', bookController.create);
+routes.put('/book/:id', bookController.update);
+routes.delete('/book/:id', bookController.delete);
 
 export default routes;
