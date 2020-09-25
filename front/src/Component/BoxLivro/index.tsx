@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import { FiPlus } from 'react-icons/fi';
 
 import { Book } from '../../pages/BookStore';
@@ -8,7 +8,7 @@ interface PropsBoxLivro {
   openBox: Function;
 }
 
-export const BoxLivro:FC<PropsBoxLivro> = ({object, openBox}) => {
+export const BoxLivro = ({object, openBox} : PropsBoxLivro) => {
   return (
     <>
       {object?.map((book: Book) => (

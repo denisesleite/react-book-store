@@ -20,14 +20,13 @@ export interface Book{
     status: string
 }
 
-const Livraria = () => {
+export const BookStore = () => {
     const history = useHistory();
     
     const [book, setBook] = useState<Book[]>();
     const [selectedBook, setSelectedBook] = useState<Book[]>();
 
     const [modal, setModal] = useState(false);
-
     const [modalAdicionaLivro, setModalAdicionaLivro] = useState(false);     
 
     useEffect(() => {
@@ -36,7 +35,7 @@ const Livraria = () => {
         });
     }, []);
 
-    function handleBook(book: Book){
+    const handleBook = (book: Book) => {
         const bookSelected = [{
             id: book.id,
             name: book.name,
@@ -51,20 +50,7 @@ const Livraria = () => {
         setSelectedBook(bookSelected);
         setModal(true);
     }
-
-    function handleRemoveBook(book: Book){
-        if(book.status !== "Disponível"){
-            alert('Não é possível deletar um livro alugado');
-        }else{
-            api.delete(`livros/${book.id}`);
-            alert('Livro excluído com sucesso!');
-        }
-    }
-
-    function handleSaveEdition(book: Book){
-        
-    }
-
+    
     return (
         <>
             <header>
@@ -82,25 +68,17 @@ const Livraria = () => {
                 </div>
             </main>
 
-            <Modal 
-                object={selectedBook}
-                saveEdition={handleSaveEdition}
-                removeBook={handleRemoveBook}
-                openModal={modal}
-            >
-
-                <FiX onClick={() => setModal(false)}/>
+            <Modal object={selectedBook} openModal={modal}>
+                <FiX onClick={() => {setModal(false)}} />
             </Modal>
         
-            <div>
+            {/* <div>
                 <div className={modalAdicionaLivro ? "modal active adiciona-livro" : "modal" }>
                     <div className="content">
                         <FiX onClick={() => setModalAdicionaLivro(false)}/>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
-
-export default Livraria;

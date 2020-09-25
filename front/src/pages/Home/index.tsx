@@ -3,24 +3,15 @@ import { FiArrowRight } from 'react-icons/fi';
 import './styles.css';
 import '../../assets/css/app.css';
 import { useHistory } from 'react-router-dom';
-import Input from "../../Component/Input";
+import { Input } from "../../Component/Input";
 
 const Home = () => {
     const formRef = useRef(null);
 
     const history = useHistory();
 
-    async function handleSubmit(data: any){
-
-        // const schema = Yup.object().shape({
-        //     usuario: Yup.string().required('O nome é obrigatório!'),
-        //     senha: Yup.string().required('A senha é obrigatória!'),
-        // });
-
-        // await schema.validate(data, {
-        // })
-
-        history.push('/listagem-livros');
+    const handleSubmit = () =>{
+        history.push('/listing-books');
     }
 
     return (

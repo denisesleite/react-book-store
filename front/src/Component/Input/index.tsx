@@ -1,6 +1,16 @@
 import React from 'react';
 
-export default function Input({label, type, name, value, disabled, handleChange, placeholder}: any) {
+interface PropsInput {
+  label?: string,
+  type: string,
+  name: string,
+  value?: string,
+  disabled?: boolean,
+  handleChange?: any,
+  placeholder?: string
+}
+
+export const Input = ({label, type, name, value, disabled, handleChange, placeholder}: PropsInput) => {
   return (
     <div className="input-form">
       <label htmlFor={name}>{label}</label>
