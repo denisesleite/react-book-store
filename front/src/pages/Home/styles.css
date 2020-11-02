@@ -1,59 +1,76 @@
+.title-mobile{
+  font-family: 'Lobster', cursive;
+  margin-bottom: 50px;
+  text-align: center;
+  display: none;
+}
+
 .tela-login{
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }   
 
-.coluna.background{
-    background-image: url('../../assets/img/livros.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: #fff;
-    text-align: center;
+.col.background{
+  background-image: url('../../assets/img/livros.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
 }
 
-.coluna.form{
-    background: #f9f9f9;
+.col.form{
+  background: #f9f9f9;
 }
 
-.coluna.background h1{
-    text-align: center;
-    margin-bottom: 15px;
+.col.form form{
+  width: 50%;
+  margin: 0 auto;
 }
 
-.coluna{
-    width:50%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0 20px;
+.col.background h1{
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.col{
+  width:50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 20px;
+  justify-content: center;
 }
 
 form .input-form{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 12px;
+  width: 100%;
 }
-
 
 /*MEDIA*/
 
 @media (max-width: 768px){
-    .tela-login{
-        flex-direction: column;
-    }
+  .title-mobile{
+    display: block;
+  }
 
-    .coluna.background{
-        display: none;
-    }
+  .tela-login{
+    flex-direction: column;
+  }
 
-    .coluna{
-        width: 100%;
-        padding: 0;
-    }
+  .col.background{
+    display: none;
+  }
 
-    form {
-        width: 80%;
-    }
+  .col{
+    width: 100%;
+    padding: 0;
+  }
+
+  .col.form form{
+    width: 80%;
+  }
 }
