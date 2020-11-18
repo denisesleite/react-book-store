@@ -1,8 +1,7 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import api from '../../services/api';
 import { FiX, FiSearch } from 'react-icons/fi';
-import { BoxLivro } from '../../components/BoxLivro';
-import Search from '../../components/Search';
+import { BoxLivro } from '../../components/ListBook';
 import { Input } from '../../components/Input';
 import { Form } from '../../components/Form';
 
@@ -21,12 +20,14 @@ export interface Book{
 
 export const BookStore = () => {
   const [book, setBook] = useState<Book[]>([]);
+  const [arrayInitial, setArrayInitial] = useState([]);
   const [selectedBook, setSelectedBook] = useState<Book[]>();
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
     api.get('/book').then(response => {
       setBook(response.data);
+      setArrayInitial(response.data);
     });
   }, []);
 
@@ -62,12 +63,12 @@ export const BookStore = () => {
 
   function handleFilterBooks(e: ChangeEvent<HTMLInputElement>) {
     let newValue = e.target.value.trim().toLowerCase();
-    console.log(newValue)
 
-    const newBooks = book.filter(book => book.name.toLowerCase().includes(newValue));
-    console.log(newBooks)
+    const newBooks = arrayInitial.filter((book: Book) => book.name.toLowerCase().includes(newValue));
 
-    setBook(book);
+    console.log('newbooks', newBooks)
+
+    setBook(newBooks);
   }
     
   return (
@@ -98,7 +99,7 @@ export const BookStore = () => {
         <div className="lista">
           <BoxLivro
             object={book}
-            openBox={handleOpenInformationBook}
+            openModalDescriptionBook={handleOpenInformationBook}
           />
         </div>
       </main>

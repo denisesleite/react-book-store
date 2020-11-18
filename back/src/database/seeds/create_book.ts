@@ -13,7 +13,7 @@ export async function seed(knex: Knex) {
       status: 'Alugado',
     },
     {
-      name: 'The Amityville Horror',
+      name: 'The amityville horror',
       author: 'Jay Anson',
       year: 1977,
       genre: 'Terror',
@@ -22,7 +22,7 @@ export async function seed(knex: Knex) {
       status: 'Disponível',
     },
     {
-      name: 'Garota Exemplar',
+      name: 'Garota exemplar',
       author: 'Gillian Flynn',
       year: 2012,
       genre: 'Romance, Mistério, Ficção, Suspense',
@@ -49,7 +49,7 @@ export async function seed(knex: Knex) {
       status: 'Disponível',
     },
     {
-      name: 'The Outsider',
+      name: 'The outsider',
       author: 'Stephen King',
       year: 2018,
       genre: 'Romance, Terror, Suspense, Mistério',
@@ -58,7 +58,7 @@ export async function seed(knex: Knex) {
       status: 'Alugado',
     },
     {
-      name: 'A Assombração da Casa da Colina',
+      name: 'A assombração da casa da colina',
       author: 'Shirley Jackson',
       year: 1959,
       genre: 'Romance, Terror, Ficção gótica',
@@ -67,7 +67,7 @@ export async function seed(knex: Knex) {
       status: 'Alugado',
     },
     {
-      name: 'The Chronicles of Narnia',
+      name: 'The chronicles of narnia',
       author: 'Clive Staples Lewis',
       year: 1956,
       genre: 'Literatura fantástica',
@@ -76,7 +76,7 @@ export async function seed(knex: Knex) {
       status: 'Disponível',
     },
     {
-      name: 'A Hora Do Pesadelo',
+      name: 'A hora do pesadelo',
       author: 'Carlos Primati, Thommy Hutson',
       year: 2017,
       genre: 'Terror, Suspense',
@@ -85,7 +85,7 @@ export async function seed(knex: Knex) {
       status: 'Alugado',
     },
     {
-      name: 'O Que Aconteceu Com Annie',
+      name: 'O que aconteceu com annie',
       author: 'C.J. Tudor',
       year: 2019,
       genre: 'Suspense',

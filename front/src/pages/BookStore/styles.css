@@ -34,6 +34,31 @@ header h1 {
     height: 11px;
 }
 
+/* SEARCH INPUT */
+
+.search{
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search .search-input{
+	width: 50%;
+	margin-right: 10px;
+}
+
+.search .search-input form{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search .search-input form svg{
+  position: absolute;
+  right: 5px;
+}
+
 /* MODAL */
 
 .modal{
@@ -119,6 +144,14 @@ header h1 {
 	.content .buttons{
 		flex-direction: column;
 	}
+
+	.search{
+		flex-direction: column;
+	}
+
+	.search .search-input {
+		width: 100%;
+	}
 }
 
 @media (min-width: 768px){
@@ -127,6 +160,10 @@ header h1 {
 	}
 
 	.modal .content{
-			width: 45%;
+		width: 45%;
+	}
+
+	.search button{
+		margin-top: 0;
 	}
 }

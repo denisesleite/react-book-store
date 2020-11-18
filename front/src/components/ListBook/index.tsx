@@ -3,16 +3,16 @@ import { FiPlus } from 'react-icons/fi';
 
 import { Book } from '../../pages/BookStore';
 
-interface PropsBoxLivro {
+interface PropsListBook {
   object?: Book[];
-  openBox: Function;
+  openModalDescriptionBook: Function;
 }
 
-export const BoxLivro = ({object, openBox} : PropsBoxLivro) => {
+export const BoxLivro = ({object, openModalDescriptionBook} : PropsListBook) => {
   return (
     <>
       {object?.map((book: Book) => (
-        <div className="box-livro" key={book.id} onClick={() => openBox(book)}>
+        <div className="box-livro" key={book.id} onClick={() => openModalDescriptionBook(book)}>
           <div>
               <p>
                 <b>Nome do livro:</b> {book.name.length > 18 ? book.name.substr(0, 18) + '...' : book.name}
