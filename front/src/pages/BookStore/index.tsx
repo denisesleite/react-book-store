@@ -47,7 +47,7 @@ export const BookStore = () => {
     setModal(true);
   }
 
-  const handleRemoveBook = (bookSelected: Book) =>{
+  const handleRemoveBook = (bookSelected: Book) => {
     if(bookSelected.status !== "Disponível"){
       alert('Não é possível deletar um livro alugado');
       setModal(false);
@@ -61,7 +61,7 @@ export const BookStore = () => {
     }
   }
 
-  function handleFilterBooks(e: ChangeEvent<HTMLInputElement>) {
+  const handleFilterBooks = (e: ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value.trim().toLowerCase();
 
     const newBooks = arrayInitial.filter((book: Book) => book.name.toLowerCase().includes(newValue));
