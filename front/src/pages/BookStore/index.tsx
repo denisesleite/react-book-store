@@ -77,8 +77,6 @@ export const BookStore = () => {
           <h1>LOGO</h1>
       </header>
 
-      {/* <Search listBooks={book}/> */}
-
       <div className="search">
         <div className="search-input">
           <form onSubmit={() => {}}>
