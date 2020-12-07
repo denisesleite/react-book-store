@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Input } from '../../components/Input';
+import { Book } from '../../pages/BookStore';
 
 interface PropsForm {
   item: any;
@@ -9,10 +10,15 @@ interface PropsForm {
 export const Form = ({item, handleRemoveBook} : PropsForm) => {
   const [bookSelected, setBookSelected] = useState(item);
   const [disabledButton, setDisabledButton] = useState(true); 
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(e);
+  }
   
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="dados-livro">
           <Input 
             name="nome"
@@ -71,13 +77,13 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             handleChange={(e: any) => setBookSelected(e.target.value)}
           />
         </div>
+      <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
+        <button type="submit">Salvar</button>
+      </div>
       </form>
       <div className="buttons">
         <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
         <button onClick={() => handleRemoveBook(bookSelected.id)}>Remover Livro</button>
-      </div>
-      <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
-        <button>Salvar</button>
       </div>
     </>
   )

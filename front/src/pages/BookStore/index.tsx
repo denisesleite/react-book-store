@@ -20,8 +20,9 @@ export interface Book{
 
 export const BookStore = () => {
   const [book, setBook] = useState<Book[]>([]);
+  const [disabledButton, setDisabledButton] = useState(true); 
   const [arrayInitial, setArrayInitial] = useState([]);
-  const [selectedBook, setSelectedBook] = useState<Book[]>();
+  const [selectedBook, setSelectedBook] = useState<Book[]>([]);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -46,6 +47,22 @@ export const BookStore = () => {
     setSelectedBook(bookSelected);
     setModal(true);
   }
+
+  const handleValueChange = (value: any) => {
+    // console.log('property name: '+ e.target.name);
+    // let newArr = [...selectedBook]; // copying the old datas array
+    // newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
+    // console.log('newArr: ' + newArr);
+
+    // setDatas(newArr); // ??
+  }
+
+  // const handleUpdateBook = (book: Book) => {
+  //   console.log(book)
+
+  //   // setSelectedBook(bookUpdated);
+  //   // setModal(false);
+  // }
 
   const handleRemoveBook = (bookSelected: Book) => {
     if(bookSelected.status !== "Disponível"){
@@ -74,7 +91,7 @@ export const BookStore = () => {
   return (
     <>
       <header>
-          <h1>LOGO</h1>
+        <h1>LOGO</h1>
       </header>
 
       <div className="search">
@@ -103,13 +120,19 @@ export const BookStore = () => {
       </main>
 
       <div className={modal ? 'modal active' : 'modal'}>
-        {selectedBook?.map((book: any) => (
+        {selectedBook.map((book: Book) => (
+          
           <div className="content" key={book.id}>
             <FiX onClick={() => {setModal(false)}} />
 
             <p id="id-livro">ID do livro: {book.id}</p>
             
-            <Form item={book} handleRemoveBook={() => handleRemoveBook(book)}/>
+            <Form 
+              item={book} 
+              handleRemoveBook={() => handleRemoveBook(book)}
+              // handleUpdateBook={() => handleUpdateBook(book)}
+            />
+
           </div>
         ))}
       </div>

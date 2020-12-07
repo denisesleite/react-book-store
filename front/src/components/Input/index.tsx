@@ -4,7 +4,7 @@ interface PropsInput {
   label?: string,
   type: string,
   name: string,
-  value?: string,
+  value?: any,
   disabled?: boolean,
   handleChange?: any,
   placeholder?: string
