@@ -20,7 +20,6 @@ export interface Book{
 
 export const BookStore = () => {
   const [book, setBook] = useState<Book[]>([]);
-  const [disabledButton, setDisabledButton] = useState(true); 
   const [arrayInitial, setArrayInitial] = useState([]);
   const [selectedBook, setSelectedBook] = useState<Book[]>([]);
   const [modal, setModal] = useState(false);
@@ -48,24 +47,8 @@ export const BookStore = () => {
     setModal(true);
   }
 
-  const handleValueChange = (value: any) => {
-    // console.log('property name: '+ e.target.name);
-    // let newArr = [...selectedBook]; // copying the old datas array
-    // newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
-    // console.log('newArr: ' + newArr);
-
-    // setDatas(newArr); // ??
-  }
-
-  // const handleUpdateBook = (book: Book) => {
-  //   console.log(book)
-
-  //   // setSelectedBook(bookUpdated);
-  //   // setModal(false);
-  // }
-
   const handleRemoveBook = (bookSelected: Book) => {
-    if(bookSelected.status !== "Disponível"){
+    if(bookSelected.status !== "Disponível" || "disponível"){
       alert('Não é possível deletar um livro alugado');
       setModal(false);
     }else{
@@ -130,9 +113,7 @@ export const BookStore = () => {
             <Form 
               item={book} 
               handleRemoveBook={() => handleRemoveBook(book)}
-              // handleUpdateBook={() => handleUpdateBook(book)}
             />
-
           </div>
         ))}
       </div>

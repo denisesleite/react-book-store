@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Input } from '../../components/Input';
-import { Book } from '../../pages/BookStore';
+import api from '../../services/api';
 
 interface PropsForm {
   item: any;
@@ -8,14 +8,38 @@ interface PropsForm {
 }
 
 export const Form = ({item, handleRemoveBook} : PropsForm) => {
-  const [bookSelected, setBookSelected] = useState(item);
   const [disabledButton, setDisabledButton] = useState(true); 
+  const [name, setName] = useState(item.name); 
+  const [author, setAuthor] = useState(item.author); 
+  const [year, setYear] = useState(item.year); 
+  const [genre, setGenre] = useState(item.genre); 
+  const [publisher, setPublisher] = useState(item.publisher); 
+  const [page, setPage] = useState(item.page); 
+  const [status, setStatus] = useState(item.status); 
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(e);
-  }
+    
+    const data = {
+      name, 
+      author,
+      year, 
+      genre,
+      publisher,
+      page,
+      status
+    }
+
+      if(status === 'disponível' || status === 'Disponível' 
+        || status === 'alugado' || status === 'Alugado' ){
   
+        await api.put(`book/${item.id}`, data);
+        alert(`Livro de id ${item.id} atualizado com sucesso`);
+      }else{
+      alert("Status não pode ser diferente de Disponível ou Alugado");
+    }
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -23,58 +47,58 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
           <Input 
             name="nome"
             label="Nome do Livro"
-            value={bookSelected.name}
+            value={name}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setName(e.target.value)}
           />
           <Input 
             name="autor"
             label="Autor do livro"
-            value={bookSelected.author}
+            value={author}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setAuthor(e.target.value)}
           />
           <Input 
             name="ano"
             label="Ano do livro"
-            value={bookSelected.year}
+            value={year}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setYear(e.target.value)}
           />
           <Input 
             name="genero"
             label="Gênero do livro"
-            value={bookSelected.genre}
+            value={genre}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setGenre(e.target.value)}
           />
           <Input 
             name="editora"
             label="Editora do livro"
-            value={bookSelected.publisher}
+            value={publisher}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setPublisher(e.target.value)}
           />
           <Input 
             name="paginas"
             label="Nº de páginas do livro"
-            value={bookSelected.page}
+            value={page}
             disabled={disabledButton}
             type="number"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setPage(e.target.value)}
           />
           <Input 
             name="status"
             label="Status do livro"
-            value={bookSelected.status}
+            value={status}
             disabled={disabledButton}
             type="text"
-            handleChange={(e: any) => setBookSelected(e.target.value)}
+            handleChange={(e: any) => setStatus(e.target.value)}
           />
         </div>
       <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
@@ -83,7 +107,7 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
       </form>
       <div className="buttons">
         <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
-        <button onClick={() => handleRemoveBook(bookSelected.id)}>Remover Livro</button>
+        <button onClick={() => handleRemoveBook(item.id)}>Remover Livro</button>
       </div>
     </>
   )
