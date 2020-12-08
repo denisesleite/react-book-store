@@ -8,7 +8,7 @@ interface PropsListBook {
   openModalDescriptionBook: Function;
 }
 
-export const BoxLivro = ({object, openModalDescriptionBook} : PropsListBook) => {
+export const ListBook = ({object, openModalDescriptionBook} : PropsListBook) => {
   return (
     <>
       {object?.map((book: Book) => (

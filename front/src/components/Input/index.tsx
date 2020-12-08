@@ -22,6 +22,7 @@ export const Input = ({label, type, name, value, disabled, handleChange, placeho
         disabled={disabled} 
         onChange={handleChange} 
         placeholder={placeholder}
+        min="0"
         required
       />
     </div>

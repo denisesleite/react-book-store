@@ -1,25 +1,28 @@
 import React, { FormEvent, useState } from 'react';
+
 import { Input } from '../../components/Input';
+
 import api from '../../services/api';
 
 interface PropsForm {
-  item: any;
-  handleRemoveBook: Function;
+  item?: any;
+  children: any;
+  disabled?: any;
+  type?: string;
 }
 
-export const Form = ({item, handleRemoveBook} : PropsForm) => {
-  const [disabledButton, setDisabledButton] = useState(true); 
-  const [name, setName] = useState(item.name); 
-  const [author, setAuthor] = useState(item.author); 
-  const [year, setYear] = useState(item.year); 
-  const [genre, setGenre] = useState(item.genre); 
-  const [publisher, setPublisher] = useState(item.publisher); 
-  const [page, setPage] = useState(item.page); 
-  const [status, setStatus] = useState(item.status); 
+export const Form = ({item, children, disabled, type} : PropsForm) => {
+  const [name, setName] = useState(item.name || ''); 
+  const [author, setAuthor] = useState(item.author || ''); 
+  const [year, setYear] = useState(item.year || ''); 
+  const [genre, setGenre] = useState(item.genre || ''); 
+  const [publisher, setPublisher] = useState(item.publisher || ''); 
+  const [page, setPage] = useState(item.page || ''); 
+  const [status, setStatus] = useState(item.status || ''); 
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     const data = {
       name, 
       author,
@@ -30,12 +33,24 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
       status
     }
 
-      if(status === 'disponível' || status === 'Disponível' 
-        || status === 'alugado' || status === 'Alugado' ){
-  
-        await api.put(`book/${item.id}`, data);
-        alert(`Livro de id ${item.id} atualizado com sucesso`);
-      }else{
+    if(status === 'disponível' || status === 'Disponível' 
+      || status === 'alugado' || status === 'Alugado' ){
+
+      switch(type){
+        case "addBook":
+          await api.post('book', data);
+          alert(`Livro ${name} criado com sucesso`);
+        break;
+
+        case "updateBook":
+          await api.put(`book/${item.id}`, data);
+          alert(`Livro de id ${item.id} atualizado com sucesso`);
+        break;
+
+        default:
+          break;
+      }
+    }else{
       alert("Status não pode ser diferente de Disponível ou Alugado");
     }
   }
@@ -48,7 +63,7 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="nome"
             label="Nome do Livro"
             value={name}
-            disabled={disabledButton}
+            disabled={disabled}
             type="text"
             handleChange={(e: any) => setName(e.target.value)}
           />
@@ -56,7 +71,7 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="autor"
             label="Autor do livro"
             value={author}
-            disabled={disabledButton}
+            disabled={disabled}
             type="text"
             handleChange={(e: any) => setAuthor(e.target.value)}
           />
@@ -64,15 +79,15 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="ano"
             label="Ano do livro"
             value={year}
-            disabled={disabledButton}
-            type="text"
+            disabled={disabled}
+            type="number"
             handleChange={(e: any) => setYear(e.target.value)}
           />
           <Input 
             name="genero"
             label="Gênero do livro"
             value={genre}
-            disabled={disabledButton}
+            disabled={disabled}
             type="text"
             handleChange={(e: any) => setGenre(e.target.value)}
           />
@@ -80,7 +95,7 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="editora"
             label="Editora do livro"
             value={publisher}
-            disabled={disabledButton}
+            disabled={disabled}
             type="text"
             handleChange={(e: any) => setPublisher(e.target.value)}
           />
@@ -88,7 +103,7 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="paginas"
             label="Nº de páginas do livro"
             value={page}
-            disabled={disabledButton}
+            disabled={disabled}
             type="number"
             handleChange={(e: any) => setPage(e.target.value)}
           />
@@ -96,19 +111,14 @@ export const Form = ({item, handleRemoveBook} : PropsForm) => {
             name="status"
             label="Status do livro"
             value={status}
-            disabled={disabledButton}
+            disabled={disabled}
             type="text"
             handleChange={(e: any) => setStatus(e.target.value)}
           />
         </div>
-      <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
-        <button type="submit">Salvar</button>
-      </div>
+
+        {children}
       </form>
-      <div className="buttons">
-        <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
-        <button onClick={() => handleRemoveBook(item.id)}>Remover Livro</button>
-      </div>
     </>
   )
 }

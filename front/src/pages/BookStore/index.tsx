@@ -1,8 +1,9 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import api from '../../services/api';
 import { FiX, FiSearch } from 'react-icons/fi';
-import { BoxLivro } from '../../components/ListBook';
-import { Input } from '../../components/Input';
+
+import { ListBook } from '../../components/ListBook';
+import { Input } from '../../components/Input'; 
 import { Form } from '../../components/Form';
 
 import './styles.css';
@@ -19,10 +20,12 @@ export interface Book{
 }
 
 export const BookStore = () => {
+  const [disabledButton, setDisabledButton] = useState(true); 
   const [book, setBook] = useState<Book[]>([]);
   const [arrayInitial, setArrayInitial] = useState([]);
   const [selectedBook, setSelectedBook] = useState<Book[]>([]);
   const [modal, setModal] = useState(false);
+  const [modalAdd, setModalAdd] = useState(false);
 
   useEffect(() => {
     api.get('/book').then(response => {
@@ -70,6 +73,16 @@ export const BookStore = () => {
 
     setBook(newBooks);
   }
+
+  const handleAddNewBook = (e: any) => {
+    e.preventDefault();
+    setModalAdd(true);
+  }
+
+  const closeModal = () => {
+    setModal(false);
+    setDisabledButton(true);
+  }
     
   return (
     <>
@@ -90,12 +103,12 @@ export const BookStore = () => {
           </form>
         </div>
 
-        <a href="#" onClick={() => {}}>Adicionar Livro</a>
+        <a href="#" onClick={handleAddNewBook}>Adicionar Livro</a>
       </div>
 
       <main>
         <div className="lista">
-          <BoxLivro
+          <ListBook
             object={book}
             openModalDescriptionBook={handleOpenInformationBook}
           />
@@ -103,19 +116,43 @@ export const BookStore = () => {
       </main>
 
       <div className={modal ? 'modal active' : 'modal'}>
-        {selectedBook.map((book: Book) => (
-          
-          <div className="content" key={book.id}>
-            <FiX onClick={() => {setModal(false)}} />
+        <div className="content">
+          <FiX onClick={closeModal} />
 
-            <p id="id-livro">ID do livro: {book.id}</p>
-            
-            <Form 
-              item={book} 
-              handleRemoveBook={() => handleRemoveBook(book)}
-            />
-          </div>
-        ))}
+          {selectedBook.map((book: any) => (
+            <div key={book.id}>
+              <p id="id-livro">ID do livro: {book.id}</p>
+              
+              <Form
+                item={book} 
+                disabled={disabledButton}
+                type="updateBook"
+              >
+                <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
+                  <button type="submit">Salvar</button>
+                </div>
+              </Form>
+              <div className="buttons">
+                <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
+                <button onClick={() => handleRemoveBook(book.id)}>Remover Livro</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={modalAdd ? 'modal active' : 'modal'}>
+        <div className="content">
+          <FiX onClick={() => {setModalAdd(false)}} />
+
+          <Form
+            item=""
+            disabled=""
+            type="addBook"
+          >
+            <button type="submit">Adicionar</button>
+          </Form>
+        </div>
       </div>
     </>
   )
