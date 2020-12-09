@@ -5,7 +5,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import { BookStore } from './pages/BookStore';
 
-const Router = () => {
+const Routes = () => {
     return(
         <BrowserRouter>
             <Route component={Home} path="/" exact />
@@ -14,4 +14,4 @@ const Router = () => {
     )
 }
 
-export default Router;
+export default Routes;
