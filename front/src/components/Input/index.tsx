@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './style.css';
+
 interface PropsInput {
   label?: string,
   type: string,
@@ -12,7 +14,7 @@ interface PropsInput {
 
 export const Input = ({label, type, name, value, disabled, handleChange, placeholder}: PropsInput) => {
   return (
-    <div className="input-form">
+    <div className="form__input">
       <label htmlFor={name}>{label}</label>
       <input 
         type={type} 

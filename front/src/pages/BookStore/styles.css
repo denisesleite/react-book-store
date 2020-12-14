@@ -1,26 +1,36 @@
+.page__home{
+	min-height: 100vh;
+	background: #faf7f5;
+}
+
 header {
-    background: #91765c;
-    padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 15px;
+	width: 100%;
 }
 
 header h1 {
-    color: #fff;
-    text-align: center;
+	color: #363636;
+	text-align: center;
+	font-family: 'Lobster', cursive;
 }
 
 .lista{
     width: calc(100% - 30px);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     margin: 15px;
 }
 
 .lista .box-livro{
-    background: #f1f1f1;
+    background: #fff;
     border-radius: 5px;
     padding: 15px 15px 5px;
-    cursor: pointer;
+		cursor: pointer;
+		box-shadow: 6px 4px 15px 2px #ccc;
 }
 
 .lista .detalhes{
@@ -40,7 +50,8 @@ header h1 {
   margin: 20px 0 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+	justify-content: center;
+	width: 100%;
 }
 
 .search .search-input{
@@ -59,86 +70,19 @@ header h1 {
   right: 5px;
 }
 
-/* MODAL */
-
-.modal{
-	width: 100%;
-	position: fixed;
-	top: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	background: rgba(0,0,0,0.5);
-	transition: all .3s linear;
-	opacity: 0;
-	visibility: hidden;
-}
-  
-.active{
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal .content{
-	background: #fff;
-	padding: 30px;
-	border-radius: 4px;
-	position: relative;
-}
-
-.modal .content h1{
-	text-align: center;
-	margin-bottom: 15px;
-}
-
-.modal .content svg{
-	width: 25px;
-	height: 25px;
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	cursor: pointer;
-}
-
-.modal .content #id-livro{
-	color: #666;
-}
-
-.modal .content .buttons{
-	display: flex;
-	justify-content: space-between;
-}
-
-.modal .content .buttons.salvar-alteracoes{
-	display: none;
-}
-
-.modal .dados-livro{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-.modal form{
-	width: 100%
-}
-
-.modal .input-form{
-	width: 100%;
-}
-
 /* MEDIA QUERIES */
 
 @media (max-width: 768px){
+	header {
+		flex-direction: column;
+	}
+
+	header h1{
+		margin: 10px 0;
+	}
+
 	.lista{
 		grid-template-columns: repeat(2, 1fr);
-	}
-	
-	.content{
-		max-height: 300px;
-		width: 60%;
-		overflow: auto;
 	}
 
 	.content .buttons{
@@ -147,6 +91,7 @@ header h1 {
 
 	.search{
 		flex-direction: column;
+    margin-top: 0;
 	}
 
 	.search .search-input {
@@ -155,14 +100,6 @@ header h1 {
 }
 
 @media (min-width: 768px){
-	.modal .input-form{
-		width: 49%;
-	}
-
-	.modal .content{
-		width: 45%;
-	}
-
 	.search button{
 		margin-top: 0;
 	}

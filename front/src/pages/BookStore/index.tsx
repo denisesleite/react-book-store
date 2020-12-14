@@ -8,7 +8,6 @@ import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
 import './styles.css';
-import '../../assets/css/app.css';
 export interface Book{ 
   id: number,
   name: string,
@@ -86,26 +85,28 @@ export const BookStore = () => {
   }
     
   return (
-    <>
+    <div className="page__home">
       <header>
-        <h1>LOGO</h1>
-      </header>
+        <h1>BookHouse</h1>
 
-      <div className="search">
-        <div className="search-input">
-          <form onSubmit={() => {}}>
-            <Input 
-              type="text"
-              name="pesquisa"
-              placeholder="Pesquisar por..."
-              handleChange={handleFilterBooks}
-            />
-            <FiSearch />
-          </form>
+        <div className="search">
+          <div className="search-input">
+            <form onSubmit={() => {}}>
+              <Input 
+                type="text"
+                name="pesquisa"
+                placeholder="Pesquisar por..."
+                handleChange={handleFilterBooks}
+              />
+              <FiSearch />
+            </form>
+          </div>
+
+          <a href="#" onClick={handleAddNewBook}>Adicionar Livro</a>
         </div>
 
-        <a href="#" onClick={handleAddNewBook}>Adicionar Livro</a>
-      </div>
+        <h3>Sair</h3>
+      </header>
 
       <main>
         <div className="lista">
@@ -124,6 +125,7 @@ export const BookStore = () => {
           <div key={book.id}>
             <p id="id-livro">ID do livro: {book.id}</p>
             
+            <h1>{book.name}</h1>
             <Form
               item={book} 
               disabled={disabledButton}
@@ -153,6 +155,6 @@ export const BookStore = () => {
           <button type="submit">Adicionar</button>
         </Form>
       </Modal> 
-    </>
+    </div>
   )
 }

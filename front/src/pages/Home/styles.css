@@ -1,38 +1,9 @@
-.title-mobile{
-  font-family: 'Lobster', cursive;
-  margin-bottom: 50px;
-  text-align: center;
-  display: none;
-}
-
-.tela-login{
+.tela__login{
   display: flex;
   align-items: center;
-}   
-
-.col.background{
-  background-image: url('../../assets/img/livros.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  color: #fff;
-  text-align: center;
 }
 
-.col.form{
-  background: #f9f9f9;
-}
-
-.col.form form{
-  width: 50%;
-  margin: 0 auto;
-}
-
-.col.background h1{
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.col{
+.tela__login .tela__login-col{
   width:50%;
   min-height: 100vh;
   display: flex;
@@ -42,35 +13,62 @@
   justify-content: center;
 }
 
-form .input-form{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 12px;
-  width: 100%;
+.tela__login .tela__login-col > div{
+  text-align: center;
+}
+
+.tela__login .tela__login-col.form > div{
+  padding-bottom: 28px;
+}
+
+.tela__login .tela__login-col.form .image__mobile{
+  width: 45%;
+  display: none;
+}
+
+.tela__login .tela__login-col > div > img{
+  width: 65%;
+}
+
+.tela__login .tela__login-col.form{
+  background: #faf7f5;
+}
+
+.tela__login .tela__login-col.form form{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.tela__login .tela__login-col h1{
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: 'Lobster', cursive;
+  color: #b39d88;
 }
 
 /*MEDIA*/
-
 @media (max-width: 768px){
-  .title-mobile{
-    display: block;
-  }
-
-  .tela-login{
+  .tela__login{
     flex-direction: column;
   }
 
-  .col.background{
+  .tela__login-col.form{
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .tela__login .tela__login-col.form .image__mobile{
+    display: block;
+    margin: 60px 0;
+  }
+
+  .tela__login .tela__login-col.form form{
+    width: 80%;
+  }
+
+  .tela__login .tela__login-col.background{
     display: none;
   }
 
-  .col{
-    width: 100%;
-    padding: 0;
-  }
-
-  .col.form form{
-    width: 80%;
-  }
+  
 }
