@@ -1,7 +1,7 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { FiSearch, FiLogOut, FiMenu } from 'react-icons/fi';
+import { FiSearch, FiLogOut, FiMenu, FiX, FiPlusCircle } from 'react-icons/fi';
 
 import { ListBook } from '../../components/ListBook';
 import { Input } from '../../components/Input'; 
@@ -9,8 +9,6 @@ import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
 import banner from '../../assets/img/banner.jpg';
-import iconHamburguer from '../../assets/img/hamburguer.svg';
-import iconLogout from '../../assets/img/logout.svg';
 
 import './styles.css';
 export interface Book{ 
@@ -31,6 +29,7 @@ export const BookStore = () => {
   const [selectedBook, setSelectedBook] = useState<Book[]>([]);
   const [modal, setModal] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
+  const [openMenuMobile, setOpenMenuMobile] = useState(false);
 
   useEffect(() => {
     api.get('/book').then(response => {
@@ -84,10 +83,15 @@ export const BookStore = () => {
     setModalAdd(true);
   }
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setModal(false);
     setDisabledButton(true);
   }
+
+  let iconHamburguer = document.querySelector(".page__home-mobile-hamburguer");
+  iconHamburguer?.addEventListener('click', function(){
+    setOpenMenuMobile(true);
+  })
     
   return (
     <div className="page__home">
@@ -96,7 +100,7 @@ export const BookStore = () => {
 
         <div className="page__home-search">
           <div className="page__home-search-input">
-            <form onSubmit={() => {}}>
+            <form>
               <Input 
                 type="text"
                 name="pesquisa"
@@ -116,15 +120,55 @@ export const BookStore = () => {
       </header>
 
       <header className="page__home-mobile">
-        <Link to="#" className="page__home-mobile-hamburguer">
-          <FiMenu cursor="pointer" color="#fff" size={30}/>
-        </Link>
+        <div className="page__home-mobile-header">
+          <Link to="#" className="page__home-mobile-hamburguer">
+            <FiMenu color="#fff" size={30}/>
+          </Link>
 
-        <h1>BookHouse</h1>
+          <h1>BookHouse</h1>
 
-        <Link to="/">
-          <FiLogOut cursor="pointer" color="#fff" size={25}/>
-        </Link>
+          <div className="page__home-mobile-icons">
+            <Link to="#" className="page__home-mobile-icons-plus"> 
+              <FiPlusCircle color="#fff" size={22} onClick={handleAddNewBook}/>
+            </Link>
+
+            <Link to="/">
+              <FiLogOut color="#fff" size={22}/>
+            </Link>
+          </div>
+        </div>
+
+        <form>
+          <Input 
+            type="text"
+            name="pesquisa"
+            placeholder="Pesquisar por..."
+            handleChange={handleFilterBooks}
+          />
+        </form>
+
+        <div className={openMenuMobile ? 'page__home-mobile-menu active' : 'page__home-mobile-menu'}>
+          <div>
+            <FiX size={30} color="#fff" onClick={() => setOpenMenuMobile(false)} />
+          </div>
+
+          <nav>
+            <ul>
+              <li>
+                <Link to="#">Lorem Ipsum</Link>
+              </li>
+              <li>
+                <Link to="#">Lorem Ipsum</Link>
+              </li>
+              <li>
+                <Link to="#">Lorem Ipsum</Link>
+              </li>
+              <li>
+                <Link to="#">Lorem Ipsum</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
       <main>
@@ -141,7 +185,7 @@ export const BookStore = () => {
 
       <Modal 
         className={modal ? 'modal active' : 'modal'} 
-        handleCloseModal={closeModal}
+        handleCloseModal={handleCloseModal}
       >
         {selectedBook.map((book: any) => (
           <div key={book.id}>

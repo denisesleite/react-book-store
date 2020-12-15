@@ -57,7 +57,7 @@
 	display: none;
 }
 
-.modal .dados-livro{
+.modal .modal__content .modal__content-data-book{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -82,7 +82,7 @@
 		flex-direction: column;
 	}
 
-	.modal .modal__content .modal__content-buttons button{
+	.modal .modal__content button{
 		width: 100%;
 	}
 }

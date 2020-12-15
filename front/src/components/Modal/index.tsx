@@ -14,7 +14,7 @@ export const Modal = ({className, handleCloseModal, children}: PropsModal) => {
   return (
     <div className={className}>
       <div className="modal__content">
-        <FiX onClick={handleCloseModal} />
+        <FiX onClick={handleCloseModal} color="#363636" />
 
         {children}
       </div>

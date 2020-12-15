@@ -58,7 +58,7 @@ export const Form = ({item, children, disabled, type} : PropsForm) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="dados-livro">
+        <div className="modal__content-data-book">
           <Input 
             name="nome"
             label="Nome do Livro"
