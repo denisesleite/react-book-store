@@ -32,7 +32,7 @@
 
 .modal .modal__content h1{
 	text-align: center;
-	margin-bottom: 15px;
+	margin: 12px 0 20px;
 }
 
 .modal .modal__content svg{
@@ -48,12 +48,12 @@
 	color: #666;
 }
 
-.modal .modal__content .buttons{
+.modal .modal__content .modal__content-buttons{
 	display: flex;
 	justify-content: space-between;
 }
 
-.modal .modal__content .buttons.salvar-alteracoes{
+.modal .modal__content .modal__content-buttons.save-editions{
 	display: none;
 }
 
@@ -68,14 +68,22 @@
 }
 
 @media (max-width: 768px){
-	.lista{
-		grid-template-columns: repeat(2, 1fr);
-	}
-	
 	.modal__content{
-		max-height: 300px;
-		width: 60%;
+		max-height: 470px;
+		width: 85%;
 		overflow: auto;
+	}
+
+	.modal .modal__content h1{
+		font-size: 22px;
+	}
+
+	.modal .modal__content .modal__content-buttons{
+		flex-direction: column;
+	}
+
+	.modal .modal__content .modal__content-buttons button{
+		width: 100%;
 	}
 }
 

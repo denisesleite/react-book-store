@@ -7,6 +7,8 @@ import { Input } from '../../components/Input';
 import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
+import banner from '../../assets/img/banner.jpg';
+
 import './styles.css';
 export interface Book{ 
   id: number,
@@ -89,8 +91,8 @@ export const BookStore = () => {
       <header>
         <h1>BookHouse</h1>
 
-        <div className="search">
-          <div className="search-input">
+        <div className="page__home-search">
+          <div className="page__home-search-input">
             <form onSubmit={() => {}}>
               <Input 
                 type="text"
@@ -109,7 +111,10 @@ export const BookStore = () => {
       </header>
 
       <main>
-        <div className="lista">
+        <div className="page__home-image">
+          <img src={banner} alt=""/>
+        </div>
+        <div className="page__home-list">
           <ListBook
             object={book}
             openModalDescriptionBook={handleOpenInformationBook}
@@ -131,11 +136,11 @@ export const BookStore = () => {
               disabled={disabledButton}
               type="updateBook"
             >
-              <div className={disabledButton ? 'buttons salvar-alteracoes' : 'buttons'}>
+              <div className={disabledButton ? 'modal__content-buttons save-editions' : 'modal__content-buttons'}>
                 <button type="submit">Salvar</button>
               </div>
             </Form>
-            <div className="buttons">
+            <div className="modal__content-buttons">
               <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
               <button onClick={() => handleRemoveBook(book.id)}>Remover Livro</button>
             </div>

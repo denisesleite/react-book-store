@@ -12,7 +12,7 @@ export const ListBook = ({object, openModalDescriptionBook} : PropsListBook) => 
   return (
     <>
       {object?.map((book: Book) => (
-        <div className="box-livro" key={book.id} onClick={() => openModalDescriptionBook(book)}>
+        <div className="page__home-list-item" key={book.id} onClick={() => openModalDescriptionBook(book)}>
           <div>
               <p>
                 <b>Nome do livro:</b> {book.name.length > 18 ? book.name.substr(0, 18) + '...' : book.name}
@@ -20,7 +20,7 @@ export const ListBook = ({object, openModalDescriptionBook} : PropsListBook) => 
               <p><b>Autor do livro:</b> {book.author}</p>
           </div>
 
-          <div className="detalhes">
+          <div className="page__home-list-item-details">
               <p>Clique para mais detalhes <FiPlus/></p>
           </div>
         </div>  

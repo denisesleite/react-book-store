@@ -17,36 +17,49 @@ header h1 {
 	font-family: 'Lobster', cursive;
 }
 
-.lista{
-    width: calc(100% - 30px);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin: 15px;
+.page__home .page__home-image{
+	position: relative;
+	height: 0;
+	padding-bottom: 23%;
 }
 
-.lista .box-livro{
-    background: #fff;
-    border-radius: 5px;
-    padding: 15px 15px 5px;
-		cursor: pointer;
-		box-shadow: 6px 4px 15px 2px #ccc;
+.page__home .page__home-image img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+	opacity: 0.8;
 }
 
-.lista .detalhes{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.page__home .page__home-list{
+	width: calc(100% - 30px);
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	margin: 15px;
 }
 
-.lista .detalhes svg{
-    width: 11px;
-    height: 11px;
+.page__home .page__home-list .page__home-list-item{
+	background: #fff;
+	border-radius: 5px;
+	padding: 15px 15px 5px;
+	cursor: pointer;
+	box-shadow: 6px 4px 15px 2px #ccc;
+}
+
+.page__home .page__home-list .page__home-list-item .page__home-list-item-details{
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.page__home .page__home-list .page__home-list-item .page__home-list-item-details svg{
+	width: 11px;
+	height: 11px;
 }
 
 /* SEARCH INPUT */
-
-.search{
+.page__home .page__home-search{
   margin: 20px 0 10px;
   display: flex;
   align-items: center;
@@ -54,24 +67,23 @@ header h1 {
 	width: 100%;
 }
 
-.search .search-input{
+.page__home .page__home-search .page__home-search-input{
 	width: 50%;
 	margin-right: 10px;
 }
 
-.search .search-input form{
+.page__home .page__home-search .page__home-search-input form{
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.search .search-input form svg{
+.page__home .page__home-search .page__home-search-input form svg{
   position: absolute;
   right: 5px;
 }
 
 /* MEDIA QUERIES */
-
 @media (max-width: 768px){
 	header {
 		flex-direction: column;
@@ -81,26 +93,22 @@ header h1 {
 		margin: 10px 0;
 	}
 
-	.lista{
+	.page__home .page__home-list{
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	.content .buttons{
-		flex-direction: column;
-	}
-
-	.search{
+	.page__home .page__home-search{
 		flex-direction: column;
     margin-top: 0;
 	}
 
-	.search .search-input {
+	.page__home .page__home-search .page__home-search-input {
 		width: 100%;
 	}
 }
 
 @media (min-width: 768px){
-	.search button{
+	.page__home .page__home-search button{
 		margin-top: 0;
 	}
 }
