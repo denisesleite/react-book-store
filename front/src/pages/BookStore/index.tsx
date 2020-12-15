@@ -1,6 +1,7 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiLogOut, FiMenu } from 'react-icons/fi';
 
 import { ListBook } from '../../components/ListBook';
 import { Input } from '../../components/Input'; 
@@ -8,6 +9,8 @@ import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
 import banner from '../../assets/img/banner.jpg';
+import iconHamburguer from '../../assets/img/hamburguer.svg';
+import iconLogout from '../../assets/img/logout.svg';
 
 import './styles.css';
 export interface Book{ 
@@ -88,7 +91,7 @@ export const BookStore = () => {
     
   return (
     <div className="page__home">
-      <header>
+      <header className="page__home-desktop">
         <h1>BookHouse</h1>
 
         <div className="page__home-search">
@@ -104,10 +107,24 @@ export const BookStore = () => {
             </form>
           </div>
 
-          <a href="#" onClick={handleAddNewBook}>Adicionar Livro</a>
+          <Link to="#" onClick={handleAddNewBook}>Adicionar Livro</Link>
         </div>
 
-        <h3>Sair</h3>
+        <Link to="/">
+          <FiLogOut cursor="pointer" color="#363636" size={25}/>
+        </Link>
+      </header>
+
+      <header className="page__home-mobile">
+        <Link to="#" className="page__home-mobile-hamburguer">
+          <FiMenu cursor="pointer" color="#fff" size={30}/>
+        </Link>
+
+        <h1>BookHouse</h1>
+
+        <Link to="/">
+          <FiLogOut cursor="pointer" color="#fff" size={25}/>
+        </Link>
       </header>
 
       <main>

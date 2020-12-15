@@ -9,6 +9,7 @@
 a{
   color: #363636;
   font-size: 14px;
+  display: flex;
 }
 
 h1, h3{
