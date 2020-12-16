@@ -1,6 +1,5 @@
-## Livraria Radical
-Sistema de biblioteca online, onde você consegue consultar um livro, alugar, deletar e atualizar. Para esta aplicação foram utilizadas as tecnologias react, node com typescript e banco de dados knex.
-
+## Bem vindo a livraria BookHouse
+Sistema de biblioteca online, onde você consegue consultar um livro, alugar, deletar, criar e atualizar. Para esta aplicação foram utilizadas as tecnologias react, node com typescript e banco de dados knex.
 
 #### Para executar você deve clonar este repositório
 $ git clone https://github.com/denisesleite/react-book-store.git

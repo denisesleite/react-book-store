@@ -9,6 +9,7 @@ import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
 import banner from '../../assets/img/banner.jpg';
+import bannerMobile from '../../assets/img/banner-mobile.png';
 
 import './styles.css';
 export interface Book{ 
@@ -96,27 +97,46 @@ export const BookStore = () => {
   return (
     <div className="page__home">
       <header className="page__home-desktop">
-        <h1>BookHouse</h1>
+        <div className="page__home-desktop-header">
+          <h1>BookHouse</h1>
 
-        <div className="page__home-search">
-          <div className="page__home-search-input">
-            <form>
-              <Input 
-                type="text"
-                name="pesquisa"
-                placeholder="Pesquisar por..."
-                handleChange={handleFilterBooks}
-              />
-              <FiSearch />
-            </form>
+          <div className="page__home-search">
+            <div className="page__home-search-input">
+              <form>
+                <Input 
+                  type="text"
+                  name="pesquisa"
+                  placeholder="Pesquisar por..."
+                  handleChange={handleFilterBooks}
+                />
+                <FiSearch />
+              </form>
+            </div>
+
+            <FiPlusCircle color="#363636" cursor="pointer" size={22} onClick={handleAddNewBook} />
           </div>
 
-          <Link to="#" onClick={handleAddNewBook}>Adicionar Livro</Link>
+          <Link to="/">
+            <FiLogOut cursor="pointer" color="#363636" size={25}/>
+          </Link>
         </div>
 
-        <Link to="/">
-          <FiLogOut cursor="pointer" color="#363636" size={25}/>
-        </Link>
+        <nav className="page__home-desktop-header-menu">
+          <ul>
+            <li>
+              <Link to="#">Lorem Ipsum</Link>
+            </li>
+            <li>
+              <Link to="#">Lorem Ipsum</Link>
+            </li>
+            <li>
+              <Link to="#">Lorem Ipsum</Link>
+            </li>
+            <li>
+              <Link to="#">Lorem Ipsum</Link>
+            </li>
+          </ul>
+        </nav>
       </header>
 
       <header className="page__home-mobile">
@@ -129,7 +149,7 @@ export const BookStore = () => {
 
           <div className="page__home-mobile-icons">
             <Link to="#" className="page__home-mobile-icons-plus"> 
-              <FiPlusCircle color="#fff" size={22} onClick={handleAddNewBook}/>
+              <FiPlusCircle color="#fff" size={22} onClick={handleAddNewBook} />
             </Link>
 
             <Link to="/">
@@ -173,7 +193,8 @@ export const BookStore = () => {
 
       <main>
         <div className="page__home-image">
-          <img src={banner} alt=""/>
+          <img src={bannerMobile} alt="Banner Mobile" className="page__home-image-mobile" />
+          <img src={banner} alt="Banner Desktop" className="page__home-image-desktop" />
         </div>
         <div className="page__home-list">
           <ListBook
