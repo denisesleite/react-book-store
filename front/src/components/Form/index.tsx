@@ -18,7 +18,7 @@ export const Form = ({item, children, disabled, type} : PropsForm) => {
   const [genre, setGenre] = useState(item.genre || ''); 
   const [publisher, setPublisher] = useState(item.publisher || ''); 
   const [page, setPage] = useState(item.page || ''); 
-  const [status, setStatus] = useState(item.status || ''); 
+  const [status, setStatus] = useState(item.status || '');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

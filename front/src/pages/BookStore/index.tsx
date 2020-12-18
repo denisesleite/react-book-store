@@ -1,10 +1,9 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
-import { Link } from 'react-router-dom';
+import { FiX } from 'react-icons/fi';
 import api from '../../services/api';
-import { FiSearch, FiLogOut, FiMenu, FiX, FiPlusCircle } from 'react-icons/fi';
 
 import { ListBook } from '../../components/ListBook';
-import { Input } from '../../components/Input'; 
+import { Header } from '../../components/Header'; 
 import { Form } from '../../components/Form';
 import { Modal } from '../../components/Modal';
 
@@ -92,105 +91,21 @@ export const BookStore = () => {
   let iconHamburguer = document.querySelector(".page__home-mobile-hamburguer");
   iconHamburguer?.addEventListener('click', function(){
     setOpenMenuMobile(true);
-  })
+  });
     
   return (
     <div className="page__home">
-      <header className="page__home-desktop">
-        <div className="page__home-desktop-header">
-          <h1>BookHouse</h1>
 
-          <div className="page__home-search">
-            <div className="page__home-search-input">
-              <form>
-                <Input 
-                  type="text"
-                  name="pesquisa"
-                  placeholder="Pesquisar por..."
-                  handleChange={handleFilterBooks}
-                />
-                <FiSearch />
-              </form>
-            </div>
-
-            <FiPlusCircle color="#363636" cursor="pointer" size={22} onClick={handleAddNewBook} />
-          </div>
-
-          <Link to="/">
-            <FiLogOut cursor="pointer" color="#363636" size={25}/>
-          </Link>
+      <Header
+        handleFilterBooks={handleFilterBooks}
+        handleAddNewBook={handleAddNewBook}
+        classMobile={openMenuMobile ? 'page__home-mobile-menu active' : 'page__home-mobile-menu'}
+      >
+        <div>
+          <FiX size={30} color="#fff" onClick={() => setOpenMenuMobile(false)} />
         </div>
-
-        <nav className="page__home-desktop-header-menu">
-          <ul>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <header className="page__home-mobile">
-        <div className="page__home-mobile-header">
-          <Link to="#" className="page__home-mobile-hamburguer">
-            <FiMenu color="#fff" size={30}/>
-          </Link>
-
-          <h1>BookHouse</h1>
-
-          <div className="page__home-mobile-icons">
-            <Link to="#" className="page__home-mobile-icons-plus"> 
-              <FiPlusCircle color="#fff" size={22} onClick={handleAddNewBook} />
-            </Link>
-
-            <Link to="/">
-              <FiLogOut color="#fff" size={22}/>
-            </Link>
-          </div>
-        </div>
-
-        <form>
-          <Input 
-            type="text"
-            name="pesquisa"
-            placeholder="Pesquisar por..."
-            handleChange={handleFilterBooks}
-          />
-        </form>
-
-        <div className={openMenuMobile ? 'page__home-mobile-menu active' : 'page__home-mobile-menu'}>
-          <div>
-            <FiX size={30} color="#fff" onClick={() => setOpenMenuMobile(false)} />
-          </div>
-
-          <nav>
-            <ul>
-              <li>
-                <Link to="#">Lorem Ipsum</Link>
-              </li>
-              <li>
-                <Link to="#">Lorem Ipsum</Link>
-              </li>
-              <li>
-                <Link to="#">Lorem Ipsum</Link>
-              </li>
-              <li>
-                <Link to="#">Lorem Ipsum</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
+      </Header>
+      
       <main>
         <div className="page__home-image">
           <img src={bannerMobile} alt="Banner Mobile" className="page__home-image-mobile" />
@@ -213,6 +128,7 @@ export const BookStore = () => {
             <p id="id-livro">ID do livro: {book.id}</p>
             
             <h1>{book.name}</h1>
+
             <Form
               item={book} 
               disabled={disabledButton}
@@ -222,6 +138,7 @@ export const BookStore = () => {
                 <button type="submit">Salvar</button>
               </div>
             </Form>
+
             <div className="modal__content-buttons">
               <button onClick={() => setDisabledButton(false)}>Editar Livro</button>
               <button onClick={() => handleRemoveBook(book.id)}>Remover Livro</button>
