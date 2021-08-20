@@ -1,32 +1,48 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useField } from '@unform/core'
 
-import './style.css';
+import { InputWrapper } from './Input.styles';
 
-interface PropsInput {
-  label?: string,
-  type: string,
+interface InputProps {
   name: string,
-  value?: any,
+  type?: string,
+  label?: string,
+  value?: string | number,
   disabled?: boolean,
-  handleChange?: any,
   placeholder?: string
 }
 
-export const Input = ({label, type, name, value, disabled, handleChange, placeholder}: PropsInput) => {
+export const Input = ({ name, type, label, value, ...rest }: InputProps) => {
+  const inputRef = useRef(null)
+  const { fieldName, defaultValue, registerField } = useField(name)
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef,
+      getValue: ref => {
+        return ref.current.value
+      },
+      setValue: (ref, newValue) => {
+        ref.current.value = newValue
+      },
+      clearValue: ref => {
+        ref.current.value = ''
+      },
+    })
+  }, [fieldName, registerField])
+
   return (
-    <div className="form__input">
-      <label htmlFor={name}>{label}</label>
-      <input 
-        type={type} 
-        name={name} 
-        id={name} 
-        value={value} 
-        disabled={disabled} 
-        onChange={handleChange} 
-        placeholder={placeholder}
-        min="0"
-        required
+    <InputWrapper>
+      <label htmlFor={fieldName}>{label}</label>
+
+      <input
+        id={fieldName}
+        type={type || 'text'}
+        ref={inputRef}
+        defaultValue={value || defaultValue}
+        {...rest}
       />
-    </div>
+    </InputWrapper>
   )
 }

@@ -19,7 +19,7 @@ h1, h3{
 p, label{
   font-size: 14px;
   line-height: 22px;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   color: #363636;
 }
 
