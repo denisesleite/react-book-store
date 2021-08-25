@@ -12,6 +12,7 @@ import BookItem from '../../components/Item/Item';
 import { createPortal } from 'react-dom';
 import { Container, Banner, Content, Menu } from './Listing.styles';
 import { Book } from '../../Interface/Book';
+import { useCallback } from 'react';
 
 const Listing = () => {
   const [book, setBook] = useState<Book[]>([]);
@@ -24,12 +25,12 @@ const Listing = () => {
     });
   }, []);
 
-  const handleDataModal = (item: Book) => {
+  const handleDataModal = useCallback((item: Book) => {
     setData(item);
     setOpenModal(true);
-  }
+  }, []);
 
-  const handleDelete = async (item: Book) => {
+  const handleDelete = useCallback(async (item: Book) => {
     await api.delete(`/book/${item.id}`);
     alert(`Livro ${item.name} deletado com sucesso!`);
     
@@ -39,9 +40,9 @@ const Listing = () => {
 
     setBook(newArray);
     setOpenModal(false);
-  }
+  }, [book]);
 
-  const handleUpdate = async (item: Book) => {
+  const handleUpdate = useCallback(async (item: Book) => {
     await api.put(`/book/${item.id}`, item)
 
     let newArray = book.map(book => {
@@ -56,7 +57,7 @@ const Listing = () => {
     
     setBook(newArray)
     setOpenModal(false);
-  }
+  }, [book]);
     
   return (
     <>
