@@ -1,42 +1,32 @@
 import React, { useState } from 'react';
 import { FiX } from 'react-icons/fi';
 
-import { Book } from '../../pages/Listing';
 import { Form } from '@unform/web'
-import { Input } from '../Input';
+import Input from '../Input';
 import { Container, Content } from './Modal.styles';
-import api from '../../services/api';
+import { Book } from '../../Interface/Book';
 
 type PropsModal = {
   data: Book;
   close?: () => void;
+  deleteBook: (book: Book) => {};
+  updateBook: (book: Book) => {};
 }
 
-export const Modal = ({ data, close }: PropsModal) => {
+const Modal = ({ data, close, deleteBook, updateBook }: PropsModal) => {
   const [disabled, setDisabled] = useState(true);
-
-  const handleSubmit = async (book: Book) => {
-    // await api.put(`/book/${object.id}`, book);
-    // alert(`Livro ${book.name} editado com sucesso!`);
-    
-    // let newArray = teste.filter((item, index) => {
-      //   if(item.id === object.id){
-        //   }
-        // });
-  
-    console.log('book', book)
-  }
-
-  const handleDelete = async (id: number) => {
-    await api.delete(`/book/${id}`);
-    alert(`Livro deletado com sucesso!`);
-  }
 
   return (
     <Container>
       <Content>
         <FiX onClick={close} />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={updateBook}>
+          <Input 
+            name="id"
+            label="Id do Livro"
+            value={data.id}
+            disabled
+          />
           <Input 
             name="name"
             label="Nome do Livro"
@@ -83,9 +73,11 @@ export const Modal = ({ data, close }: PropsModal) => {
           />
           <button type="submit">Salvar</button>
         </Form>
-        <button type="submit" onClick={() => setDisabled(false)}>Editar</button>
-        <button type="submit" onClick={() => handleDelete(data.id)}>Deletar</button>
+        <button type="button" onClick={() => setDisabled(false)}>Editar</button>
+        <button type="button" onClick={() => deleteBook(data)}>Deletar</button>
       </Content>
     </Container>
   )
 }
+
+export default Modal;

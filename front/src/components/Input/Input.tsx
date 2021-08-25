@@ -12,7 +12,7 @@ interface InputProps {
   placeholder?: string
 }
 
-export const Input = ({ name, type, label, value, ...rest }: InputProps) => {
+const Input = ({ name, type, label, value, ...rest }: InputProps) => {
   const inputRef = useRef(null)
   const { fieldName, defaultValue, registerField } = useField(name)
 
@@ -46,3 +46,5 @@ export const Input = ({ name, type, label, value, ...rest }: InputProps) => {
     </InputWrapper>
   )
 }
+
+export default Input;

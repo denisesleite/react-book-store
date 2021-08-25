@@ -11,7 +11,7 @@ interface PropsHeader {
   children?: any;
 }
 
-export const Header = ({handleFilterBooks, handleAddNewBook, classMobile, children}: PropsHeader) => {
+const Header = ({handleFilterBooks, handleAddNewBook, classMobile, children}: PropsHeader) => {
   return (
     <>
       {/* <header className="page__home-desktop"> */}
@@ -40,3 +40,5 @@ export const Header = ({handleFilterBooks, handleAddNewBook, classMobile, childr
     </>
   )
 }
+
+export default Header;

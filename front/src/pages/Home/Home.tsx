@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Input } from "../../components/Input";
+import Input from "../../components/Input";
 import { Form } from '@unform/web'
 
 import imgReadingBook from '../../assets/img/background.svg';

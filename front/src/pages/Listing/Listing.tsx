@@ -1,27 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import api from '../../services/api';
 
-import { Header } from '../../components/Header'; 
+import Header from '../../components/Header'; 
 
 import banner from '../../assets/img/banner.jpg';
 // import bannerMobile from '../../assets/img/banner-mobile.png';
 
 import { Link } from 'react-router-dom';
-import { Modal } from '../../components/Modal';
-import BookItem from '../../components/Item';
+import Modal from '../../components/Modal';
+import BookItem from '../../components/Item/Item';
 import { createPortal } from 'react-dom';
 import { Container, Banner, Content, Menu } from './Listing.styles';
-
-export interface Book{ 
-  id: number,
-  name: string,
-  author: string,
-  year: number,
-  genre: string,
-  publisher: string,
-  page: number,
-  status: string
-}
+import { Book } from '../../Interface/Book';
 
 const Listing = () => {
   const [book, setBook] = useState<Book[]>([]);
@@ -37,6 +27,35 @@ const Listing = () => {
   const handleDataModal = (item: Book) => {
     setData(item);
     setOpenModal(true);
+  }
+
+  const handleDelete = async (item: Book) => {
+    await api.delete(`/book/${item.id}`);
+    alert(`Livro ${item.name} deletado com sucesso!`);
+    
+    let newArray = book.filter((book) => {
+      return item.id !== book.id
+    });
+
+    setBook(newArray);
+    setOpenModal(false);
+  }
+
+  const handleUpdate = async (item: Book) => {
+    await api.put(`/book/${item.id}`, item)
+
+    let newArray = book.map(book => {
+      if(Number(book.id) === Number(item.id)){
+        return {
+          ...item
+        }
+      }
+
+      return book;
+    });
+    
+    setBook(newArray)
+    setOpenModal(false);
   }
     
   return (
@@ -81,7 +100,12 @@ const Listing = () => {
 
       {openModal && 
         createPortal(
-          <Modal data={data} close={() => setOpenModal(false)} />, 
+          <Modal 
+            data={data} 
+            deleteBook={handleDelete} 
+            updateBook={handleUpdate} 
+            close={() => setOpenModal(false)} 
+          />, 
         document.body)
       }
     </>

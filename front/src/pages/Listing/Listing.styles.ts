@@ -29,21 +29,6 @@ export const Content = styled.section`
 		grid-template-columns: repeat(4, 1fr);
 		gap: 16px;
 		list-style: none;
-
-		li {
-			background: #fff;
-			border-radius: 5px;
-			border: 2px solid transparent;
-			padding: 15px 15px 5px;
-			cursor: pointer;
-			box-shadow: 6px 4px 15px 2px #ccc;
-			transition: all .3s ease;
-
-			&:hover {
-				transform: translateY(-5px);
-				border-color: #d5b889;
-			}
-		}
 	}
 `;
 
@@ -55,7 +40,7 @@ export const Menu = styled.ul`
 	margin-bottom: 20px;
 
 	li {
-		margin: 0 15px;
+		margin: 0 5px;
 		position: relative;
 		transition: all 0.3s;
 

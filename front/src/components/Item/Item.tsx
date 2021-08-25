@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
-
-import { Book } from '../../pages/Listing';
+import { Book } from '../../Interface/Book';
+import ElementLi from './Item.styles';
 
 type BookItemProps = {
   item: Book;
@@ -11,7 +11,7 @@ type BookItemProps = {
 const Item = ({item, open} : BookItemProps) => {
   
   return (
-    <li onClick={open}>
+    <ElementLi onClick={open}>
       <p>
         <b>Nome do livro:</b> {item.name.length > 18 ? item.name.substr(0, 18) + '...' : item.name}
       </p>
@@ -20,9 +20,9 @@ const Item = ({item, open} : BookItemProps) => {
       </p>
 
       <div>
-          <p>Clique para mais detalhes <FiPlus/></p>
+        <p>Clique para mais detalhes <FiPlus/></p>
       </div>
-    </li>
+    </ElementLi>
   )
 }
 
