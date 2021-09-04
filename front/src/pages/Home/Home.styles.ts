@@ -12,6 +12,13 @@ export const GridCol = styled(Grid)`
   align-items: center;
 `;
 
+export const Text = styled(Box)`
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+`;
+
 export const Image = styled.img`
   max-width: 75%;
 `;
+
