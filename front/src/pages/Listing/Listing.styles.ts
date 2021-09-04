@@ -76,3 +76,9 @@ export const Menu = styled.ul`
 		}
 	}
 `;
+
+export const SectionFilter = styled.section`
+	width: 20%;
+	overflow: hidden;
+	transition: all .3s ease;
+`;

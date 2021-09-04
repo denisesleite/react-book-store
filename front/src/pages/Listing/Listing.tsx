@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import api from '../../services/api';
 
+import { FiArrowLeft } from 'react-icons/fi';
+
 import Header from '../../components/Header'; 
 
 import banner from '../../assets/img/banner.jpg';
@@ -85,17 +87,24 @@ const Listing = () => {
             </li>
           </Menu>
 
-          <Content>
-            <ul>
-              {book.map(item => (
-                <BookItem 
-                  key={item.id} 
-                  item={item} 
-                  open={() => handleDataModal(item)}
-                />
-              ))}
-            </ul>
-          </Content>
+          <div>
+            <Content>
+              <ul>
+                {book.map(item => (
+                  <BookItem 
+                    key={item.id} 
+                    item={item} 
+                    open={() => handleDataModal(item)}
+                  />
+                ))}
+              </ul>
+            </Content>
+            <section>
+              <button type="button">
+                <FiArrowLeft />
+              </button>
+            </section>     
+          </div>
         </main>
       </Container>
 

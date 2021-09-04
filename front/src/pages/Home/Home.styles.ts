@@ -1,44 +1,17 @@
 import styled from 'styled-components';
+import { Grid, Box } from '@material-ui/core';
 
-export const Container = styled.div`
+export const Container = styled(Grid)`
+  height: 100vh;
+`;
+
+export const GridCol = styled(Grid)`
+  background: #faf7f5;
+  height: inherit;
   display: flex;
   align-items: center;
 `;
 
-export const Section = styled.section`
-  width:50%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0 20px;
-  justify-content: center;
-
-  &:last-child{
-    background: #faf7f5;
-  }
-
-  > img {
-    width: 65%;
-  }
-
-  > div {
-    padding-bottom: 28px;
-  }
-
-  h1 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-family: 'Lobster', cursive;
-    color: #b39d88;
-  }
-  
-  form {
-    width: 50%;
-    margin: 0 auto;
-
-    button {
-      margin: 25px auto;
-    }
-  }
+export const Image = styled.img`
+  max-width: 75%;
 `;

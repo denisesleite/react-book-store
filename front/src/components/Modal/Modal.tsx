@@ -21,56 +21,63 @@ const Modal = ({ data, close, deleteBook, updateBook }: PropsModal) => {
       <Content>
         <FiX onClick={close} />
         <Form onSubmit={updateBook}>
-          <Input 
-            name="id"
-            label="Id do Livro"
-            value={data.id}
-            disabled
-          />
-          <Input 
-            name="name"
-            label="Nome do Livro"
-            value={data.name}
-            disabled={disabled}
-          />
-          <Input 
-            name="author"
-            label="Autor do livro"
-            value={data.author}
-            disabled={disabled}
-          />
-          <Input 
-            name="year"
-            label="Ano do livro"
-            value={data.year}
-            disabled={disabled}
-            type="number"
-          />
-          <Input 
-            name="genre"
-            label="Gênero do livro"
-            value={data.genre}
-            disabled={disabled}
-          />
-          <Input 
-            name="publisher"
-            label="Editora do livro"
-            value={data.publisher}
-            disabled={disabled}
-          />
-          <Input 
-            name="page"
-            label="Nº de páginas do livro"
-            value={data.page}
-            disabled={disabled}
-            type="number"
-          />
-          <Input 
-            name="status"
-            label="Status do livro"
-            value={data.status}
-            disabled={disabled}
-          />
+          <div>
+            <Input 
+              name="id"
+              label="Id do Livro"
+              value={data.id}
+              disabled
+            />
+            <div>
+              <Input 
+                name="name"
+                label="Nome do Livro"
+                value={data.name}
+                disabled={disabled}
+              />
+              <Input 
+                name="author"
+                label="Autor do livro"
+                value={data.author}
+                disabled={disabled}
+              />
+              <Input 
+                name="year"
+                label="Ano do livro"
+                value={data.year}
+                disabled={disabled}
+                type="number"
+              />
+            </div>
+            <div>
+              <Input 
+                name="genre"
+                label="Gênero do livro"
+                value={data.genre}
+                disabled={disabled}
+              />
+              <Input 
+                name="publisher"
+                label="Editora do livro"
+                value={data.publisher}
+                disabled={disabled}
+              />
+              <Input 
+                name="page"
+                label="Nº de páginas do livro"
+                value={data.page}
+                disabled={disabled}
+                type="number"
+              />
+              <Input 
+                name="status"
+                label="Status do livro"
+                value={data.status}
+                disabled={disabled}
+              />
+            </div>
+          </div>
+          
           <button type="submit">Salvar</button>
         </Form>
         <button type="button" onClick={() => setDisabled(false)}>Editar</button>
