@@ -1,15 +1,15 @@
 import React from 'react';
-
 import Routes from './routes';
-
-import Reset from './assets/css/Reset.styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { theme } from './assets/css/Theme';
 
 function App() {
   return (
-    <>
-      <Reset />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Routes />
-    </>
+    </ThemeProvider>
   );
 }
 
