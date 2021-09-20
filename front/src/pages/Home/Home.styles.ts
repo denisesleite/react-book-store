@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { Grid, Box, Button } from '@material-ui/core';
-import { customMedia } from '../../assets/css/Theme';
+import { Grid, Box } from '@material-ui/core';
+import { theme } from '../../assets/css/Theme';
+import media from "styled-media-query";
 
 export const Container = styled(Grid)`
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const GridCol = styled(Grid)`
@@ -12,7 +13,7 @@ export const GridCol = styled(Grid)`
   display: flex;
   align-items: center;
 
-  ${customMedia.lessThan("md")`
+  ${media.lessThan("medium")`
     flex-direction: column;
     justify-content: center;
   `}
@@ -23,14 +24,18 @@ export const Text = styled(Box)`
   line-height: 20px;
 `;
 
+export const ImageWrapper = styled(Box)`
+  text-align: center;
+
+  ${media.lessThan("medium")`
+    margin: 20px 0;
+  `};
+`;
+
 export const Image = styled.img`
   max-width: 75%;
 
-  ${customMedia.lessThan("md")`
-    max-width: 60%
-  `}; 
-`;
-
-export const CButton = styled(Button)`
-  
+  ${media.lessThan("medium")`
+    max-width: 60%;
+  `}
 `;

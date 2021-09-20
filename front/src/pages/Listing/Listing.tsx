@@ -1,20 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import api from '../../services/api';
 
-import { FiArrowLeft } from 'react-icons/fi';
-
-import Header from '../../components/Header'; 
-
-import banner from '../../assets/img/banner.jpg';
-// import bannerMobile from '../../assets/img/banner-mobile.png';
-
-import { Link } from 'react-router-dom';
 import Modal from '../../components/Modal';
-import BookItem from '../../components/Item/Item';
+import Card from '../../components/Card';
 import { createPortal } from 'react-dom';
-import { Container, Banner, Content, Menu } from './Listing.styles';
 import { Book } from '../../Interface/Book';
 import { useCallback } from 'react';
+import { Grid, RadioGroup, Radio, FormControlLabel, Box, TextField, InputAdornment } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
 
 const Listing = () => {
   const [book, setBook] = useState<Book[]>([]);
@@ -62,63 +55,59 @@ const Listing = () => {
   }, [book]);
     
   return (
-    <>
-      <Container>
-        <Header />
-        
-        <main>
-          <Banner>
-            {/* <img src={bannerMobile} alt="Banner Mobile" className="page__home-image-mobile" /> */}
-            <img src={banner} alt="Banner Desktop" className="page__home-image-desktop" />
-          </Banner>
+    <Grid container>
+      <Grid item md={2}>
+        <RadioGroup aria-label="films" name="films">
+          <FormControlLabel value="female" control={<Radio />} label="A-Z" />
+          <FormControlLabel value="male" control={<Radio />} label="Z-A" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+        </RadioGroup>
+      </Grid>
+      <Grid item md={10}>
+        <Grid container>
+          <Grid item md={10}>
+            <TextField
+              label="Pesquisar por"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+        </Grid>
 
-          <Menu>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-            <li>
-              <Link to="#">Lorem Ipsum</Link>
-            </li>
-          </Menu>
+        <Box component="ul" sx={{ p: 0 }} style={{ listStyle: 'none' }}>
+          <Grid container spacing={1}>
+            {book.map(item => (
+              <Grid item xs={12} md={3}>
+                <Card 
+                  key={item.id} 
+                  item={item} 
+                  open={() => handleDataModal(item)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Grid>
 
-          <div>
-            <Content>
-              <ul>
-                {book.map(item => (
-                  <BookItem 
-                    key={item.id} 
-                    item={item} 
-                    open={() => handleDataModal(item)}
-                  />
-                ))}
-              </ul>
-            </Content>
-            <section>
-              <button type="button">
-                <FiArrowLeft />
-              </button>
-            </section>     
-          </div>
-        </main>
-      </Container>
 
       {openModal && 
         createPortal(
           <Modal 
             data={data} 
-            deleteBook={handleDelete} 
-            updateBook={handleUpdate} 
-            close={() => setOpenModal(false)} 
-          />, 
+            handleDelete={handleDelete} 
+            handleUpdate={handleUpdate}
+            onClose={() => setOpenModal(false)}
+            onOpen={openModal}
+          />,
         document.body)
       }
-    </>
+    </Grid>
   )
 }
 

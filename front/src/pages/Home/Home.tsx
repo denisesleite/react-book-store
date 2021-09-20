@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web'
 
 import imgReadingBook from '../../assets/img/background.svg';
-import { Container, GridCol, Image, Text } from './Home.styles';
+import * as S from './Home.styles';
 import { Box, Button, Grid, TextField, Typography, Hidden } from '@material-ui/core';
 import { ArrowForward } from '@material-ui/icons';
 
@@ -15,23 +15,23 @@ const Home = () => {
   }
 
   return (
-    <Container container alignItems="center">
+    <S.Container container alignItems="center">
       <Hidden smDown>
         <Grid item xs={12} md={6}>
-          <Box css={{ textAlign: 'center' }}>
-            <Image src={imgReadingBook} />
-          </Box>
+          <S.ImageWrapper>
+            <S.Image src={imgReadingBook} />
+          </S.ImageWrapper>
         </Grid>  
       </Hidden>
 
-      <GridCol item md={6} xs={12}> 
-        <Box css={{ textAlign: 'center' }} display={{ md: 'none' }}>
-          <Image src={imgReadingBook} />
-        </Box>
+      <S.GridCol item md={6} xs={12}>
+        <S.ImageWrapper display={{ md: 'none'}}>
+          <S.Image src={imgReadingBook} />
+        </S.ImageWrapper>
 
         <Box px={2}>
           <Typography variant="h4">Bem-vindo a BookHouse</Typography>
-          <Text component="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque delectus esse quisquam, beatae reprehenderit non voluptas aliquid? Praesentium, nihil incidunt nulla vero recusandae fugit velit, officia id assumenda distinctio maiores.</Text>
+          <S.Text component="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque delectus esse quisquam, beatae reprehenderit non voluptas aliquid? Praesentium, nihil incidunt nulla vero recusandae fugit velit, officia id assumenda distinctio maiores.</S.Text>
         
           <Box pt={2}>
             <Form onSubmit={handleSubmit}>
@@ -59,8 +59,8 @@ const Home = () => {
             </Form>
           </Box>
         </Box>
-      </GridCol>
-    </Container>
+      </S.GridCol>
+    </S.Container>
   )
 }
 

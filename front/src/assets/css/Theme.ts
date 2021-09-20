@@ -1,15 +1,19 @@
-import { createTheme } from '@material-ui/core/styles';
-import { generateMedia } from 'styled-media-query';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-export const customMedia = generateMedia({
-  md: "959px"
-});
-
-export const theme = createTheme({
+export let theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 320,
+      sm: 480,
+      md: 768,
+      lg: 1200,
+      xl: 1360,
+    },
+  },
   overrides: {
     MuiFormLabel: {
       root: {
-        '&$focused':{
+        '&$focused': {
           color: '#666',
         }
       }
@@ -22,11 +26,6 @@ export const theme = createTheme({
       }
     }
   },
-  typography: {
-    h4: {
-      // [customMedia.lessThan('md')]:{
-      //   fontSize: 10
-      // },
-    }
-  }
 });
+
+theme = responsiveFontSizes(theme);
