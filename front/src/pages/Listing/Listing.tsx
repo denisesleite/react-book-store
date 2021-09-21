@@ -6,13 +6,14 @@ import Card from '../../components/Card';
 import { createPortal } from 'react-dom';
 import { Book } from '../../Interface/Book';
 import { useCallback } from 'react';
-import { Grid, RadioGroup, Radio, FormControlLabel, Box, TextField, InputAdornment } from '@material-ui/core';
+import { Grid, RadioGroup, Radio, FormControlLabel, Box, TextField, Container, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 
 const Listing = () => {
   const [book, setBook] = useState<Book[]>([]);
   const [data, setData] = useState<Book>({} as Book);
   const [openModal, setOpenModal] = useState(false);
+  const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
     api.get<Book[]>('/book').then(response => {
@@ -53,10 +54,19 @@ const Listing = () => {
     setBook(newArray)
     setOpenModal(false);
   }, [book]);
+
+  const handleFilterName = (value: string) => {
+    const text = value.trim().toLowerCase();
+    const newBooks = book.filter(item => item.name.toLowerCase().includes(text));
+    console.log('newBooks', newBooks)
+    
+    setValueInput(text);
+    setBook(newBooks)
+  };
     
   return (
-    <Grid container>
-      <Grid item md={2}>
+    <Grid container style={{ height: 'inherit' }}>
+      <Grid item md={2} style={{ background: '#34325e' }}>
         <RadioGroup aria-label="films" name="films">
           <FormControlLabel value="female" control={<Radio />} label="A-Z" />
           <FormControlLabel value="male" control={<Radio />} label="Z-A" />
@@ -64,10 +74,12 @@ const Listing = () => {
         </RadioGroup>
       </Grid>
       <Grid item md={10}>
-        <Grid container>
-          <Grid item md={10}>
+        <Container maxWidth={false}>
+          <Grid item md={12}>
             <TextField
               label="Pesquisar por"
+              onChange={(e) => handleFilterName(e.target.value)}
+              value={valueInput}
               fullWidth
               InputProps={{
                 endAdornment: (
@@ -78,21 +90,21 @@ const Listing = () => {
               }}
             />
           </Grid>
-        </Grid>
-
-        <Box component="ul" sx={{ p: 0 }} style={{ listStyle: 'none' }}>
-          <Grid container spacing={1}>
-            {book.map(item => (
-              <Grid item xs={12} md={3}>
-                <Card 
-                  key={item.id} 
-                  item={item} 
-                  open={() => handleDataModal(item)}
-                />
+          <Grid item md={12}>
+            <Box component="ul" sx={{ p: 0 }} style={{ listStyle: 'none' }}>
+              <Grid container spacing={3}>
+                {book.map(item => (
+                  <Grid item xs={12} md={3} key={item.id}>
+                    <Card
+                      item={item} 
+                      open={() => handleDataModal(item)}
+                    />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
+            </Box>
           </Grid>
-        </Box>
+        </Container>
       </Grid>
 
 

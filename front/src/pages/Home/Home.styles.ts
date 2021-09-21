@@ -4,11 +4,11 @@ import { theme } from '../../assets/css/Theme';
 import media from "styled-media-query";
 
 export const Container = styled(Grid)`
-  min-height: 100vh;
+  height: inherit;
 `;
 
 export const GridCol = styled(Grid)`
-  background: #faf7f5;
+  background: #f4efec;
   height: inherit;
   display: flex;
   align-items: center;

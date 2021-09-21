@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createGlobalStyle } from 'styled-components';
 
 export let theme = createTheme({
   breakpoints: {
@@ -27,5 +28,11 @@ export let theme = createTheme({
     }
   },
 });
+
+export const StyleGlobal = createGlobalStyle`
+  #root {
+    height: 100vh;
+  }
+`;
 
 theme = responsiveFontSizes(theme);
