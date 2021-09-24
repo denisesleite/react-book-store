@@ -15,7 +15,7 @@ const Card = ({item, open} : BookItemProps) => {
         <Grid container>
           <Grid item md={4}>
             <S.ImageWrapper>
-              <img src="https://via.placeholder.com/120x120/ccc/000" alt="Photo book" />
+              <img src="https://via.placeholder.com/120x120/ccc/666" alt="Photo book" />
             </S.ImageWrapper>
           </Grid>
           <Grid item md={8}>
