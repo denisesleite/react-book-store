@@ -16,10 +16,12 @@ const Listing = () => {
   const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
-    api.get<Book[]>('/book').then(response => {
+    const url = valueInput ? `/book?q=${valueInput}` : '/book';
+
+    api.get<Book[]>(url).then(response => {
       setBook(response.data);
     });
-  }, []);
+  }, [valueInput]);
 
   const handleDataModal = useCallback((item: Book) => {
     setData(item);
@@ -59,14 +61,9 @@ const Listing = () => {
   }, [book]);
 
   const handleFilterName = (value: string) => {
-    console.log('value', value)
-    const text = value.toLowerCase().trim();
-    console.log('text', text)
-    const newBooks = book.filter(item => item.name.toLowerCase().includes(text));
-    console.log('newBooks', newBooks)
-
-    setBook(newBooks);
-    setValueInput(text);
+    // const text = value.toLowerCase().trim();
+    // const newBooks = book.filter(item => item.name.toLowerCase().includes(text));
+    setValueInput(value);
   };
     
   return (

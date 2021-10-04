@@ -3,8 +3,14 @@ import {Request, Response} from 'express';
 
 class BookController{
     async index(req: Request, res: Response){
-        try{
-            const books = await knex('book').select('*');
+        try {
+            let books = [];
+
+            if (req?.query?.q) {
+                books = await knex('book').select('*').where('name', 'like', `%${req.query.q}%`);
+            } else {
+                books = await knex('book').select('*');
+            }
             
             const searchBooks = books.map(book => {
                 return {
