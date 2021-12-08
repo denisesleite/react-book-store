@@ -20,7 +20,7 @@ const Modal = ({ data, onClose, onOpen, handleDelete, handleUpdate }: PropsModal
   const [disabled, setDisabled] = useState(true);
 
   return (
-    <Dialog fullWidth open={onOpen} onClose={onClose} aria-labelledby="form-dialog-title">
+    <Dialog fullWidth maxWidth="md" open={onOpen} onClose={onClose} aria-labelledby="form-dialog-title">
       <Box>
         <DialogTitle id="form-dialog-title">
           {data.name}
@@ -28,55 +28,59 @@ const Modal = ({ data, onClose, onOpen, handleDelete, handleUpdate }: PropsModal
         </DialogTitle>
       </Box>
       <DialogContent dividers>
-        <Form onSubmit={() => handleUpdate}>
-          <div>
-            <Input 
-              name="name"
-              label="Nome do Livro"
-              value={data.name}
-              disabled={disabled}
-            />
-            <Input 
-              name="author"
-              label="Autor do livro"
-              value={data.author}
-              disabled={disabled}
-            />
-            <Input 
-              name="year"
-              label="Ano do livro"
-              value={data.year}
-              disabled={disabled}
-              type="number"
-            />
-          </div>
-          <div>
-            <Input 
-              name="genre"
-              label="Gênero do livro"
-              value={data.genre}
-              disabled={disabled}
-            />
-            <Input 
-              name="publisher"
-              label="Editora do livro"
-              value={data.publisher}
-              disabled={disabled}
-            />
-            <Input 
-              name="page"
-              label="Nº de páginas do livro"
-              value={data.page}
-              disabled={disabled}
-              type="number"
-            />
-            <Input 
-              name="status"
-              label="Status do livro"
-              value={data.status}
-              disabled={disabled}
-            />
-          </div>
+        <Form onSubmit={handleUpdate}>
+          <Input
+            name="id"
+            value={data.id}
+            hidden
+          />
+          <Input 
+            name="name"
+            label="Nome do Livro"
+            value={data.name}
+            disabled={disabled}
+          />
+          <Input 
+            name="author"
+            label="Autor do livro"
+            value={data.author}
+            disabled={disabled}
+          />
+          <Input 
+            name="year"
+            label="Ano do livro"
+            value={data.year}
+            disabled={disabled}
+            type="number"
+          />
+          <Input 
+            name="genre"
+            label="Gênero do livro"
+            value={data.genre}
+            disabled={disabled}
+          />
+          <Input 
+            name="publisher"
+            label="Editora do livro"
+            value={data.publisher}
+            disabled={disabled}
+          />
+          <Input 
+            name="page"
+            label="Nº de páginas do livro"
+            value={data.page}
+            disabled={disabled}
+            type="number"
+          />
+          <Input 
+            name="status"
+            label="Status do livro"
+            value={data.status}
+            disabled={disabled}
+          />
+        <Button type="submit" color="primary">
+          Salvar
+        </Button>
         </Form>
       </DialogContent>
       <DialogActions>
@@ -84,11 +88,9 @@ const Modal = ({ data, onClose, onOpen, handleDelete, handleUpdate }: PropsModal
           Editar
         </Button>
         <Button onClick={() => handleDelete} color="primary">
-          Editar
+          Deletar
         </Button>
-        <Button type="submit" color="primary">
-          Salvar
-        </Button>
+        
       </DialogActions>
     </Dialog>
 

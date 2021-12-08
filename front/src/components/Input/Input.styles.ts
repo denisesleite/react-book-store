@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
-  display: flex;
+  display: ${props => props.hidden ? 'none' : 'flex'};
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 12px;

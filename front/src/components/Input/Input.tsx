@@ -10,9 +10,10 @@ interface InputProps {
   value?: string | number,
   disabled?: boolean,
   placeholder?: string
+  hidden?: boolean;
 }
 
-const Input = ({ name, type, label, value, ...rest }: InputProps) => {
+const Input = ({ name, type, label, value, hidden, ...rest }: InputProps) => {
   const inputRef = useRef(null)
   const { fieldName, defaultValue, registerField } = useField(name)
 
@@ -33,7 +34,7 @@ const Input = ({ name, type, label, value, ...rest }: InputProps) => {
   }, [fieldName, registerField])
 
   return (
-    <InputWrapper>
+    <InputWrapper hidden={hidden}>
       <label htmlFor={fieldName}>{label}</label>
 
       <input

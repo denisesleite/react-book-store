@@ -39,6 +39,7 @@ const Listing = () => {
   }, [book]);
 
   const handleUpdate = useCallback(async (item: Book) => {
+    console.log('item', item)
     await api.put(`/book/${item.id}`, item)
 
     let newArray = book.map(book => {
@@ -47,67 +48,71 @@ const Listing = () => {
           ...item
         }
       }
-
+      
       return book;
     });
+    
+    console.log('newArray', newArray)
     
     setBook(newArray)
     setOpenModal(false);
   }, [book]);
 
   const handleFilterName = (value: string) => {
-    const text = value.trim().toLowerCase();
+    console.log('value', value)
+    const text = value.toLowerCase().trim();
+    console.log('text', text)
     const newBooks = book.filter(item => item.name.toLowerCase().includes(text));
     console.log('newBooks', newBooks)
-    
+
+    setBook(newBooks);
     setValueInput(text);
-    setBook(newBooks)
   };
     
   return (
-    <Grid container style={{ height: 'inherit' }}>
-      <Grid item md={2} style={{ background: '#34325e' }}>
-        <RadioGroup aria-label="films" name="films">
-          <FormControlLabel value="female" control={<Radio />} label="A-Z" />
-          <FormControlLabel value="male" control={<Radio />} label="Z-A" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
-        </RadioGroup>
+    <>
+      <Grid container style={{ height: 'inherit' }}>
+        <Grid item md={2} style={{ background: '#34325e' }}>
+          <RadioGroup aria-label="films" name="films">
+            <FormControlLabel value="female" control={<Radio />} label="A-Z" />
+            <FormControlLabel value="male" control={<Radio />} label="Z-A" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroup>
+        </Grid>
+        <Grid item md={10}>
+          <Container maxWidth={false}>
+            <Grid item md={12}>
+              <TextField
+                label="Pesquisar por"
+                onChange={(e) => handleFilterName(e.target.value)}
+                value={valueInput}
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid item md={12}>
+              <Box component="ul" sx={{ p: 0 }} style={{ listStyle: 'none' }}>
+                <Grid container spacing={3}>
+                  {book.map(item => (
+                    <Grid item xs={12} md={3} key={item.id}>
+                      <Card
+                        item={item} 
+                        open={() => handleDataModal(item)}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Grid>
+          </Container>
+        </Grid>
       </Grid>
-      <Grid item md={10}>
-        <Container maxWidth={false}>
-          <Grid item md={12}>
-            <TextField
-              label="Pesquisar por"
-              onChange={(e) => handleFilterName(e.target.value)}
-              value={valueInput}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item md={12}>
-            <Box component="ul" sx={{ p: 0 }} style={{ listStyle: 'none' }}>
-              <Grid container spacing={3}>
-                {book.map(item => (
-                  <Grid item xs={12} md={3} key={item.id}>
-                    <Card
-                      item={item} 
-                      open={() => handleDataModal(item)}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          </Grid>
-        </Container>
-      </Grid>
-
-
       {openModal && 
         createPortal(
           <Modal 
@@ -119,7 +124,7 @@ const Listing = () => {
           />,
         document.body)
       }
-    </Grid>
+    </>
   )
 }
 
